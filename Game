@@ -64,37 +64,37 @@ def computerLetter(letter):
 def ComputerMove():
     import symbol
     possiblemoves = [symbol for symbol, letter in enumerate(board) if letter == " " and symbol !=0]
-    zug = 0
+    move = 0
 
     for letter in [computerLetter, symbol]:
         for i in possiblemoves:
             boardCopy = board[:]
             boardCopy[i] = letter
             if Won(boardCopy, letter):
-                zug = i
-                return zug
+                move = i
+                return move
 
-    openEdges = []
+    openCorners = []
     for i in [1,3,7,9]:
-        openEdges.append(i)
+        openCorners.append(i)
 
-    if len(openEdges) > 0:
-        zug = randomR(openEdges)
-        return zug
+    if len(openCorners) > 0:
+        move = randomR(openCorners)
+        return move
 
     if 5 in possiblemoves:
-        zug = 5
-        return zug
+        move = 5
+        return move
 
-    offeneGeraden = []
+    openEdges = []
     for i in possiblemoves:
         if i in [2,4,6,8]:
-            offeneGeraden.append(i)
+            openEdges.append(i)
 
-    if len(offeneGeraden) > 0:
-        zug = randomR(offeneGeraden)
+    if len(openEdges) > 0:
+        move = randomR(openEdges)
 
-    return zug
+    return move
 
 def boardFull():
     if board.count(" ")  > 1:
@@ -121,12 +121,12 @@ def main():
             break
 
         if not (Won(board, symbol)):
-            zug = ComputerMove()
-            if zug == 0:
+            move = ComputerMove()
+            if move == 0:
                 print("Tie")
             else:
-                inBoard(computerLetter(), zug)
-                print("Computer hat ein " + computerLetter() + " in Position " + zug + " gesetzt.")
+                inBoard(computerLetter(), move)
+                print("Cheese placed " + computerLetter() + " in position " + move)
                 printBoard(board)
         else:
             print(symbol + " has won! Well done " + name)
@@ -148,6 +148,6 @@ name = input("Hey my name is Cheese? What is ur name? ")
 
 start()
 
-symbol = input("Take ur symbol (X/O) ")
+symbol = input("Choose an symbol (X/O) ") # Take a Symbol (X/O)
 
 main()
