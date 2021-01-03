@@ -148,6 +148,6 @@ name = input("Hey my name is Cheese? What is ur name? ")
 
 start()
 
-symbol = input("Suche dir ein Symbol aus (X/O) ") # Take a Symbol (X/O)
+symbol = input("Take ur symbol (X/O) ")
 
 main()
